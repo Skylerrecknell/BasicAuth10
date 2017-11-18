@@ -9,6 +9,12 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs');
 
+var auth = require('http-auth');
+var basic = auth.basic({
+    realm: "auth-db",
+    file: __dirname + "/public/data/passwords"
+    });
+
 var app = express();
 
 var db;
@@ -46,6 +52,8 @@ app.use('/style', express.static(path.join(__dirname, '/views/style')));
 if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
+
+app.use(auth.connect(basic));
 
 function getDBCredentialsUrl(jsonData) {
     var vcapServices = JSON.parse(jsonData);
