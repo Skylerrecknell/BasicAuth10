@@ -55,6 +55,7 @@ if ('development' == app.get('env')) {
 
 app.use(auth.connect(basic));
 
+
 function getDBCredentialsUrl(jsonData) {
     var vcapServices = JSON.parse(jsonData);
     // Pattern match to find the first instance of a Cloudant service in

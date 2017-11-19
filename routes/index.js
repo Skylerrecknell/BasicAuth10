@@ -4,9 +4,12 @@
  */
 
 exports.index = function(req, res){
-  res.render('index.html', { title: 'Cloudant Boiler Plate' });
+  var user = req.user;
+  res.render('index.html', {u: user, title: 'index' });
 };
 
 exports.foo = function(req, res){
-  res.render('foo.html', { title: 'Cloudant Boiler Plate' });
+  var user = req.user;
+  console.log(req);
+  res.render('foo.html', {u: user, title: 'foo' });
 };
